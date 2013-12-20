@@ -1,0 +1,59 @@
+totals - a simple program designed to determine "statistics" from
+         Penguin FTP Daemon. Written by Tom Sorensen.
+         tom@wc51.residence.gatech.edu
+
+Requires: Penguin FTP Daemon, v1.00 or higher.
+          Transfer logging (-f) be turned on.
+
+This program simply goes through your transfer.log file (or whatever you
+named it if you used the -F parameter on penftpd) and totals the number
+of bytes sent and received. It then displays these totals along with the
+first date present in the logfile.
+
+Additionally, you can have it give you info on a single day or all days.
+You can also suppress the overall total information.
+
+Usage:
+    totals d:\tcpip\penftpd\transfer.log [-d######] [-D] [-t]
+
+d:\tcpip...transfer.log: the name and location of the transfer log file.
+                         You only need to put the path in if it's not in
+                         the current directory (ie- totals transfer.log
+                         will work too)
+
+-d###### : Show statistics for date ######. The format of the ###### is
+           dependant upon your country. In the US, it's generally
+           MMDDYY. In Europe, Austrailia, and many other places it's
+           DDMMYY. In Japan and other areas of Asia it's YYMMDD. In any
+           case it's the same format as what's in transfer.log. Do NOT
+           put any -'s or /'s in this, and do not put a space in between
+           the d and the date.
+
+-D       : Show statistics for ALL dates. This can be lengthy.
+
+-t       : Suppress showing of overall totals. It won't show the grand
+           totals at the end. Basically it's so that you can see ONLY a
+           single day.
+
+What use is all this? No idea. I wanted the information though, so I
+wrote this program for myself and as an excercise. I had originally
+planned to do it in AWK, but AWK proved, well, awkward :). I also don't
+know Perl and didn't feel like learning it at the time. Finally, the
+date information would not have been possible with either as far as I
+know, since it requires National Language Support (part of the OS/2 API)
+to get some of the information.
+
+This program is completely free. The source code is included and is
+released to the public domain. Although I don't plan on ever releasing a
+new version (unless the format of transfer.log changes), I'd like to
+know if you change the source code or create another "add-on" for
+Penguin FTPD.
+
+This program was compiled with Watcom C++ 10.0A. Since I'm still not
+totally familiar with the compiler & linker options, I didn't get this
+to compile as small as CSet could make it. Even so, it's only 19k. If
+you can get this smaller with Watcom (should be possible if you can
+enable dynamic linking), please e-mail me the make files & link files
+you used.
+
+See the .c file for various other disclaimers and such.

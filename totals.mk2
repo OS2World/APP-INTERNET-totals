@@ -1,0 +1,17 @@
+!define BLANK ""
+totals.obj : totals.c .AUTODEPEND
+ *wcc386 totals.c -i=E:\WATCOM\h;E:\WATCOM\h\os2 -w4 -e25 -zq -osexan -mf -5r -bt=os2
+
+totals.exe : totals.obj .AUTODEPEND
+ @%write totals.lk1 NAME totals
+ @%append totals.lk1 FIL totals.obj
+ @%append totals.lk1 
+!ifneq BLANK ""
+ *wlib -q -n -b totals.imp 
+ @%append totals.lk1 LIBR totals.imp
+!endif
+ *wlink SYS os2v2 op st=8192 op maxe=25 op q @totals.lk1
+!ifneq BLANK ""
+ rc -i $[: -i E:\WATCOM\h -i E:\WATCOM\h\os2  totals.exe
+!endif
+
